@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
+<html>
+<head xmlns:th="http://www.thymeleaf.org">
 <meta charset="ISO-8859-1" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
@@ -68,27 +68,26 @@
 		<h1
 			class="text-secundary border border-success border-top-0 border-left-0 border-right-0"
 			th:text="${titulo}"></h1>
-		<a th:href="@{/form}">Crear Cliente</a>
-		<table class="table table-striped">
-			<thead>
+		<form th:action="@{/form}" th:object="${cliente}" method="post">
+			<table>
 				<tr>
-					<th>ID</th>
-					<th>Nombre</th>
-					<th>Apellido</th>
-					<th>Email</th>
-					<th>Fecha Creación</th>
+					<td>Nombre</td>
+					<td><input type="text" th:field="*{nombre}" /></td>
 				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="cliente: ${clientes}">
-					<td th:text="${cliente.id}"></td>
-					<td th:text="${cliente.nombre}"></td>
-					<td th:text="${cliente.apellido}"></td>
-					<td th:text="${cliente.email}"></td>
-					<td th:text="${cliente.createAt}"></td>
+				<tr>
+					<td>Apelido</td>
+					<td><input type="text" th:field="*{apellido}" /></td>
 				</tr>
-			</tbody>
-		</table>
+				<tr>
+					<td>Email</td>
+					<td><input type="text" th:field="*{email}" /></td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Crear Cliente" class="btn btn-primary"/></td>
+				</tr>
+			</table>
+			<td><input type="hidden" th:field="*{id}" /></td>
+		</form>
 	</div>
 </body>
 </html>
